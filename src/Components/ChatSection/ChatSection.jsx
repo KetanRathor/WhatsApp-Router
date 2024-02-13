@@ -9,7 +9,7 @@ const ChatSection = (props) =>{
 
     return(
     
-    <Stack direction="column" height="100%" width="100%">
+    <Stack direction="column" height="75%" width="100%">
             <ChatSectionHeader />
             <MessageSection people={props.people} />
             <ChatSectionFooter/>

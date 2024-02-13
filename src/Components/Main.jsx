@@ -48,7 +48,7 @@ const Main = () => {
   };
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "row" }}>
+    <Box sx={{ display: "flex",overflowY:"hidden", flexDirection: "row",overflowX:'hidden' }}>
       <SideBarHeader
       people ={people}
       setPeople={setPeople}

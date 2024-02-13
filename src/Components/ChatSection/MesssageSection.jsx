@@ -14,13 +14,13 @@ const MessageSection = () => {
 
     return(
         <Stack
-        
+
         // style={style.paperContainer} width="100%"
         // height = "100%">
         
         sx={{
             display: "flex",
-            height: "80vh",
+            height: "77vh",
             width: "100%",
             // backgroundColor: "blue",
 
