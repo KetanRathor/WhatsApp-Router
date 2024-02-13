@@ -1,44 +1,38 @@
 import React from "react";
 import { useState } from "react";
-import { Box, AppBar, Stack, Toolbar, Divider, Avatar, Input, List, ListItem, ListItemAvatar, ListItemText, Button, Paper, Drawer, IconButton } from "@mui/material";
+import { Box, AppBar, Stack, Toolbar, Divider, Avatar, Input, List, ListItem, ListItemAvatar, ListItemText, Button, Paper, Drawer, IconButton, Typography } from "@mui/material";
 import { deepOrange } from "@mui/material/colors";
-import CommunitiesIcon, { StatusIcon, ChannelsIcon, NewChatIcon, MenuIcon } from "./Icons/IconsAppBar";
+import CommunitiesIcon, { StatusIcon, ChannelsIcon, NewChatIcon, MenuIcon, DrawerBackIcon } from "./Icons/IconsAppBar";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import FilterListIcon from "@mui/icons-material/FilterList";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-const SideBarHeader = () => {
+const SideBarHeader = (props) => {
 
   const [searchName, setSearchName] = useState("");
   const [selectedPerson, setSelectedPerson] = useState(null);
   const [profileOpen, setProfileOpen] = useState(false);
 
-  // const people = [
-  //     { id: 1, name: "Ashutosh", messages: "Hii How Are You" },
-  //     { id: 2, name: "Ketan Rathor",messages: "Hii How Are You"  },
-  //     { id: 1, name: "Ashutosh", messages: "Hii How Are You"  },
-  //     { id: 2, name: "Ketan Rathor",messages: "Hii How Are You"  },
-  //     { id: 1, name: "Ashutosh", messages: "Hii How Are You"  },
-  //     { id: 2, name: "Ketan Rathor",messages: "Hii How Are You"  },
-  //     { id: 1, name: "Ashutosh", messages: "Hii How Are You"  },
-  //     { id: 2, name: "Ketan Rathor",messages: "Hii How Are You"  }
-  //     // Add more people as needed
-  //   ];
 
-  const [people, setPeople] = useState([
-    { id: 1, name: "Ashutosh", messages: "Hii How Are You" },
-    { id: 2, name: "Ketan Rathor", messages: "Hii How Are You" },
-    { id: 3, name: "Arpit", messages: "Hii How Are You" },
-    { id: 4, name: "Sourabh", messages: "Hii How Are You" },
-    { id: 5, name: "Mihir", messages: "Hii How Are You" },
-    { id: 6, name: "Abhishek", messages: "Hii How Are You" },
-    { id: 7, name: "Abhinandan", messages: "Hii How Are You" },
-    { id: 8, name: "Pragya", messages: "Hii How Are You" }
-    // Add more people as needed
-  ]);
 
-  const toggleDrawer = () => {
+  // const [people, setPeople] = useState([
+  //   { id: 1, name: "Ashutosh", messages: "Hii How Are You" },
+  //   { id: 2, name: "Ketan Rathor", messages: "Hii How Are You" },
+  //   { id: 3, name: "Arpit", messages: "Hii How Are You" },
+  //   { id: 4, name: "Sourabh", messages: "Hii How Are You" },
+  //   { id: 5, name: "Mihir", messages: "Hii How Are You" },
+  //   { id: 6, name: "Abhishek", messages: "Hii How Are You" },
+  //   { id: 7, name: "Abhinandan", messages: "Hii How Are You" },
+  //   { id: 8, name: "Pragya", messages: "Hii How Are You" }
+  //   // Add more people as needed
+  // ]);
+
+  const openDrawer = () => {
     setProfileOpen(!profileOpen);
   };
+  const closeDrawer = () => {
+    setProfileOpen(false);
+  }
 
   const handlePersonClick = (person) => {
     setSelectedPerson(person);
@@ -49,13 +43,13 @@ const SideBarHeader = () => {
 
 
 
-    const clonePeople = JSON.parse(JSON.stringify(people));
+    const clonePeople = JSON.parse(JSON.stringify(props.people));
     if (e.target.value === "") {
-      setPeople(clonePeople);
+      props.setPeople(clonePeople);
     }
     else {
       const filteredPeople = clonePeople.filter((person) => person.name.toLowerCase().startsWith(e.target.value.toLowerCase()));
-      setPeople(filteredPeople);
+      props.setPeople(filteredPeople);
     };
   }
 
@@ -92,14 +86,13 @@ const SideBarHeader = () => {
               display: "flex",
               height: "5vh",
               width: "20vw",
-              // justifyContent: "space-between",
               paddingLeft: "15px",
             }}
           >
             <Stack
               alignItems="flex-start"
               sx={{ width: "50%", display: "flex", p: 0 }}>
-              <IconButton sx={{ p: 0 }} onClick={toggleDrawer}>
+              <IconButton sx={{ p: 0 }} onClick={openDrawer}>
                 <Avatar sx={{ bgcolor: deepOrange[500], fontSize: "medium" }}>
                   K
                 </Avatar>
@@ -111,7 +104,7 @@ const SideBarHeader = () => {
                 display: "flex",
                 justifyContent: "space-between",
                 gap: 1,
-                width: "50%", // Set the width to 50%
+                width: "50%",
                 paddingRight: "0px"
               }}
             >
@@ -200,7 +193,7 @@ const SideBarHeader = () => {
           overflow: "auto", scrollbarWidth: "thin"
         }}
         >
-          {people.map((person) => (
+          {props.people.map((person) => (
             <>
               <ListItem key={person.id} component="div" onClick={() => handlePersonClick(person)}
                 sx={{
@@ -248,14 +241,45 @@ const SideBarHeader = () => {
         }}
       ></Box> */}
       </Box>
-      <Drawer anchor="left" open={profileOpen} onClose={toggleDrawer}>
-        <Box sx={{ width: "30vw" }}
+      <Drawer anchor="left" open={profileOpen}
+      // onClose={toggleDrawer}
+      >
+        <Box sx={{ width: "30vw", height: "100vh", display: "flex", flexDirection: "column" }}
         >
           <Stack
-            sx={{bgcolor:"green[500]",height:"20%",width:"100%"}}
+            sx={{ display: "flex", alignItems: "flex-end", flexDirection: "row", justifyContent: "flex-start", backgroundColor: "#006654", height: "18%", width: "100%" }}
           >
+            <Box
+              sx={{ display: "flex", padding: "2px", marginLeft: "20px", marginBottom: "10px" }}
+            >
+              <Box
+                onClick={closeDrawer}
+              >
+                {/* // sx={{}} */}
+
+
+                <ArrowBackIcon
+                  sx={{ color: "#aebac1", marginBottom: "4px" }}
+                />
+              </Box>
+              <Typography
+                sx={{ fontSize: "18px", marginLeft: "20px", color: "white" }}
+              >
+                Profile
+              </Typography>
+            </Box>
 
           </Stack>
+          {/* <Stack
+            sx={{ display: "flex", height: "82%", width: "100%" }}
+          >
+            <Box
+
+            >
+
+            </Box>
+
+          </Stack> */}
 
 
         </Box>
