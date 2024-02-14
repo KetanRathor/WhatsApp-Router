@@ -10,7 +10,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 // import CommunitiesIcon, { VideoCallIcon } from "./Icons/IconsAppBar";
 
-const ChatSectionHeader = () => {
+const ChatSectionHeader = (props) => {
 
 
     return (
@@ -47,13 +47,15 @@ const ChatSectionHeader = () => {
                     >
 
                         <Avatar sx={{ bgcolor: deepOrange[500], fontSize: "medium" }}>
-                            K
+                        {props.selectedPerson.name[0]}
                         </Avatar>
                     </Box>
                     <Box
-                        sx={{ display: "flex",alignItems:"center",justifyContent: "flex-start", height: "100%", width: "70%", marginLeft: "5px" }}
+                        sx={{ display: "flex",alignItems:"center",justifyContent: "flex-start", height: "100%", width: "70%",
+                        //  marginLeft: "5px"
+                         }}
                     >
-                        Ketan Rathor
+                        {props.selectedPerson.name}
                     </Box>
                     <Box
                         sx={{ display: "flex",alignItems:"center",justifyContent:"flex-end", height: "100%", width: "20%", gap:3 }}

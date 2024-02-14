@@ -9,10 +9,19 @@ const ChatSection = (props) =>{
 
     return(
     
-    <Stack direction="column" height="75%" width="100%">
-            <ChatSectionHeader />
-            <MessageSection people={props.people} />
-            <ChatSectionFooter/>
+    <Stack direction="column" height="75%" width="100%"
+        
+    >
+            <ChatSectionHeader 
+            people={props.people}
+            selectedPerson = {props.selectedPerson}
+            />
+            <MessageSection people={props.people}
+            selectedPerson = {props.selectedPerson}
+            />
+            <ChatSectionFooter
+            SendMessage = {props.SendMessage}
+            />
         </Stack>
 
 

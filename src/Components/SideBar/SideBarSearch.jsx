@@ -1,6 +1,13 @@
-import React from "react"
+import React from "react";
+import { useState } from "react";
+import { Box, AppBar, Stack, Toolbar, Divider, Avatar, Input, List, ListItem, ListItemAvatar, ListItemText, Button, Paper, Drawer, IconButton, Typography } from "@mui/material";
+import { deepOrange } from "@mui/material/colors";
+// import CommunitiesIcon, { StatusIcon, ChannelsIcon, NewChatIcon, MenuIcon, DrawerBackIcon } from "./Icons/IconsAppBar";
+import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import FilterListIcon from "@mui/icons-material/FilterList";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-const SideBarSeacrh = () =>{
+const SideBarSeacrh = (props) =>{
 
 return(
 
@@ -34,8 +41,8 @@ return(
                 placeholder="Search or start new chat"
                 fullWidth
                 disableUnderline
-                value={searchName}
-                onChange={handleSearchInputChange}
+                // value={searchName}
+                onChange={(e)=>props.handleSearchInputChange(e.target.value)}
                 sx={{
                   color: "#aebac1",
                   fontSize: "13px",

@@ -1,26 +1,52 @@
-import React from "react";
-import { Box, Stack,TextField,Paper } from "@mui/material";
+import React, { useState } from "react";
+import { Box, Stack, TextField, Paper, IconButton } from "@mui/material";
 import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfied';
 import AddIcon from '@mui/icons-material/Add';
-const ChatSectionFooter = () =>{
+import MicIcon from '@mui/icons-material/Mic';
+import SendIcon from '@mui/icons-material/Send';
 
 
 
-    return(
-        <>
-        <Stack direction={"row"}
+
+const ChatSectionFooter = (props) => {
+  // const [isHover,setIsHover] =useState(false)
+  const [inputMessage, setInputMessage] = useState("");
+
+  function onHandleChange(e){
+    
+    let text= e.target.value;
+    setInputMessage(text);
+    console.log("fffff",text);
+  }
+
+  const handleSendMessage = () => {
+    if (inputMessage.trim() !== "") {
+      props.SendMessage(inputMessage);
+      setInputMessage("");
+      console.log("sentMess",inputMessage);
+      
+    }
+  };
+
+  return (
+    <>
+      <Stack direction={"row"}
         alignItems={"center"}
-        spacing={3}
+        spacing={2}
         paddingLeft={"5px"}
-        sx={{height:"10vh",width:"100%",bgcolor:"black"}}
+        sx={{ height: "13vh", width: "100%", bgcolor: "black" }}
+      >
+        <IconButton>
+          <SentimentVerySatisfiedIcon />
+          </IconButton>
+          <IconButton>
+          <AddIcon />
+        </IconButton>
+        <Paper
+          sx={{ height: "9vh", width: "80%" }}
+        // sx={{ color: "#aebac1", fontSize: "14px" }}
         >
-            <SentimentVerySatisfiedIcon/>
-            <AddIcon/>
-            <Paper 
-            sx={{ height:"9vh",width:"80%"}}
-            // sx={{ color: "#aebac1", fontSize: "14px" }}
-            >
-              {/* <TextField
+          {/* <TextField
                 placeholder="Search or start new chat"
                 // fullWidth
                 // disableUnderline
@@ -38,20 +64,33 @@ const ChatSectionFooter = () =>{
                 }}
               /> */}
 
-            <TextField id="standard-basic"   placeholder="Type a message"
+          <TextField id="standard-basic" placeholder="Type a message"
             sx={{ height: "50%", width: "100%" }}
-            InputProps = {{
-                disableUnderline:"true",
+            InputProps={{
+              disableUnderline: "true",
+
             }}
-            
-            />
-            </Paper>
+            onChange = {onHandleChange}
+            value={inputMessage}
+          />
+        </Paper>
+        {/* <IconButton>
+            <MicIcon/>
+            </IconButton> */}
+        <IconButton
+        // onClick={()=>props.SendMessage(inputMessage)}
+        onClick={handleSendMessage}
+        >
+          {inputMessage ? <SendIcon/> :<MicIcon/>}
+          
+        </IconButton>
 
 
 
-        </Stack>
-        </>
+      </Stack>
+    </>
 
-    )
+  )
 }
 export default ChatSectionFooter;
+
