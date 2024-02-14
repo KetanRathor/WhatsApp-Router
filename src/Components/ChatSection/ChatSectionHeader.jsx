@@ -10,6 +10,18 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 // import CommunitiesIcon, { VideoCallIcon } from "./Icons/IconsAppBar";
 
+
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+// import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+// import Typography from '@mui/material/Typography';
+import Tooltip from '@mui/material/Tooltip';
+import PersonAdd from '@mui/icons-material/PersonAdd';
+import Settings from '@mui/icons-material/Settings';
+import Logout from '@mui/icons-material/Logout';
+
 const ChatSectionHeader = (props) => {
 
 
@@ -39,11 +51,11 @@ const ChatSectionHeader = (props) => {
                         display: "flex",
                         flexDirection: "row",
                         justifyContent: "flex-start",
-                        paddingLeft:"10px"
+                        // paddingLeft:"10px"
                     }}
                 >
                     <Box
-                        sx={{ display: "flex",alignItems:"center", height: "100%", width: "5%" }}
+                        sx={{ display: "flex",alignItems:"center", height: "100%", width: "5%", marginLeft:"10px" }}
                     >
 
                         <Avatar sx={{ bgcolor: deepOrange[500], fontSize: "medium" }}>
@@ -51,14 +63,14 @@ const ChatSectionHeader = (props) => {
                         </Avatar>
                     </Box>
                     <Box
-                        sx={{ display: "flex",alignItems:"center",justifyContent: "flex-start", height: "100%", width: "70%",
+                        sx={{ display: "flex",alignItems:"center",justifyContent: "flex-start", height: "100%", width: "70%",marginLeft:"30px"
                         //  marginLeft: "5px"
                          }}
                     >
                         {props.selectedPerson.name}
                     </Box>
                     <Box
-                        sx={{ display: "flex",alignItems:"center",justifyContent:"flex-end", height: "100%", width: "20%", gap:3 }}
+                        sx={{ display: "flex",alignItems:"center",justifyContent:"flex-end", height: "100%", width: "20%", gap:3, marginLeft:"20px" }}
                     >
                         <Box
                         sx={{display: 'flex', alignItems: 'center',height:"20px",width:"40px"}}
@@ -78,7 +90,7 @@ const ChatSectionHeader = (props) => {
                     <Box
                     sx={{display: 'flex', alignItems: 'center'}}
                     >
-                        <MoreVertIcon/>
+                        <AccountMenu/>
 
                     </Box>
 
@@ -109,3 +121,97 @@ const ChatSectionHeader = (props) => {
 }
 
 export default ChatSectionHeader;
+
+function AccountMenu() {
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
+    return (
+        <>
+            <IconButton
+              onClick={handleClick}
+              size="small"
+              // sx={{ ml: 2 }}
+              aria-controls={open ? 'account-menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? 'true' : undefined}
+            >
+               <MoreVertIcon />
+            </IconButton>
+          
+        
+        <Menu
+          anchorEl={anchorEl}
+          id="account-menu"
+          open={open}
+          onClose={handleClose}
+          onClick={handleClose}
+          PaperProps={{
+            elevation: 0,
+            sx: {
+              overflow: 'visible',
+              filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+              mt: 1.5,
+              '& .MuiAvatar-root': {
+                width: 32,
+                height: 32,
+                ml: -0.5,
+                mr: 1,
+              },
+              '&::before': {
+                content: '""',
+                display: 'block',
+                position: 'absolute',
+                top: 0,
+                right: 14,
+                width: 10,
+                height: 10,
+                bgcolor: 'background.paper',
+                transform: 'translateY(-50%) rotate(45deg)',
+                zIndex: 0,
+              },
+            },
+          }}
+          transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+          anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+        >
+          <MenuItem onClick={handleClose}>
+          Contact info
+          </MenuItem>
+          <MenuItem onClick={handleClose}>
+          Select messages
+          </MenuItem>
+          
+          <MenuItem onClick={handleClose}>
+          Close chat
+          </MenuItem>
+          <MenuItem onClick={handleClose}>
+          Mute notifications
+          </MenuItem>
+          <MenuItem onClick={handleClose}>
+          Disappearing messages
+          </MenuItem>
+          <MenuItem onClick={handleClose}>
+          Clear chat
+          </MenuItem>
+          <MenuItem onClick={handleClose}>
+          Delete chat
+          </MenuItem>
+          <MenuItem onClick={handleClose}>
+          Report
+          </MenuItem>
+          <MenuItem onClick={handleClose}>
+          Block
+          </MenuItem>
+        </Menu>
+  
+  
+  
+        </>
+    );
+  }
