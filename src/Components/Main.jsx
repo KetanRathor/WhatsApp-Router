@@ -26,10 +26,10 @@ const Main = () => {
 
   const [selectedPerson, setSelectedPerson] = useState( );
 
-  const theme = useTheme();
-  const smUp = useMediaQuery(theme.breakpoints.down('sm'));
+  // const theme = useTheme();
+  // const smUp = useMediaQuery(theme.breakpoints.down('sm'));
 
-  console.log("smUp", smUp)
+  // console.log("smUp", smUp)
 
 
   // const [sentText,setSentText] = useState("")
@@ -63,13 +63,16 @@ const Main = () => {
       <SideBar
       people={people}
       handlePersonClick ={handlePersonClick}
+      selectedPerson = {selectedPerson}
       />
       
       
       {selectedPerson ? <ChatSection people={people}
       selectedPerson = {selectedPerson}
       SendMessage= {SendMessage}
-      /> : <Screen />}
+      /> : <Screen
+      selectedPerson = {selectedPerson}
+      />}
       
       
       

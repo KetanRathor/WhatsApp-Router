@@ -1,4 +1,4 @@
-import { Grid, Paper, Stack, Typography } from "@mui/material";
+import { Box, Grid, Paper, Stack, Typography } from "@mui/material";
 import React from "react";
 import bg from "../images/BackgroundImage.png"
 import { green } from "@mui/material/colors";
@@ -9,25 +9,36 @@ import getCurrentTime from "../CurrentTime";
 const Message =(props) =>{
 
     return(
-        <Paper
-        sx={{display:"flex",justifyContent:"flex-end",height:"4.5vh",width:"15vw",margin:"10px"}}
+        <Box
+        
+        sx={{
+            // maxWidth:"100%",
+        display:"flex",justifyContent:"flex-end",height:"4.5vh",
+        // width:"15vw",
+        margin:"10px"}}
         >
             <Stack
+            // maxWidth={"10%"}
             display={"flex"}
             direction={"row"}
             spacing={2}
-            sx={{height:"4.5vh",width:"20vw",bgcolor:"darkgreen",padding:"5px",borderRadius:"10px"}}
+            sx={{height:"4.5vh",
+            // width:"20vw",
+            bgcolor:"darkgreen",
+            padding:"5px",borderRadius:"10px"}}
             >
-               <Typography>
+               <Box
+               overflow={"hidden"}
+               >
                 {props.msg}
-                </Typography>
+                </Box>
                 <Typography sx={{
                     //  marginTop: "2vh",
                 fontSize:"10px"}}>
                 {props.time}
                 </Typography> 
             </Stack>
-        </Paper>
+        </Box>
     )
 }
 
@@ -63,9 +74,11 @@ const MessageSection = (props) => {
         height = "100%"
         
         sx={{
+            
             display: "flex",
             height: "77vh",
             width: "100%",
+        
             // backgroundColor: "blue",
 
             

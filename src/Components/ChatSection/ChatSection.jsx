@@ -10,7 +10,7 @@ const ChatSection = (props) =>{
     return(
     
     <Stack direction="column" height="75%" width="100%"
-        
+    sx={{display: { xs:props.selectedPerson?'block': 'none', sm: 'block' }}}
     >
             <ChatSectionHeader 
             people={props.people}

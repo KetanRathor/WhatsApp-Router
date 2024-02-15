@@ -57,6 +57,7 @@ const ChatSectionHeader = (props) => {
                     <Box
                         sx={{ display: "flex",alignItems:"center", height: "100%", width: "5%", marginLeft:"10px" }}
                     >
+                        
 
                         <Avatar sx={{ bgcolor: deepOrange[500], fontSize: "medium" }}>
                         {props.selectedPerson.name[0]}

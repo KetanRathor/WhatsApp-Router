@@ -3,13 +3,13 @@ import { Box, Button, Typography } from "@mui/material";
 import { blue, blueGrey, deepOrange, grey } from "@mui/material/colors";
 import HttpsRoundedIcon from '@mui/icons-material/HttpsRounded';
 
-const Screen = () => {
+const Screen = (props) => {
 
 
   return (
     <Box
       sx={{
-        display: "flex",
+        display: {xs:props.selectedPerson?'none':'flex',sm:"flex"},
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",

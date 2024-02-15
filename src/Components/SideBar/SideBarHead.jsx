@@ -26,136 +26,239 @@ const SideBarHead = () => {
   const openDrawer = () => {
     setProfileOpen(!profileOpen);
   };
-  const closeDrawer = () => {
-    setProfileOpen(false);
+  function closeDrawer() {
+    setProfileOpen();
   }
 
   return (
-    <Stack
-    position="static"
-    sx={{
-      height: "9.5vh",
-      width: "30vw",
-      backgroundColor: "#202C33",
-      display: "flex",
-      justifyContent: "flex-start",
-    }}
-  >
-    <Toolbar
-      disableGutters
-      sx={{
-        display: "flex",
-        height: "5vh",
-        width: "20vw",
-        paddingLeft: "15px",
-      }}
-    >
+    <>
       <Stack
-        alignItems="flex-start"
-        sx={{ width: "50%", display: "flex", p: 0 }}>
-        <IconButton sx={{ p: 0 }} 
-        onClick={openDrawer}
+        direction={"row"}
+        alignItems={"center"}
+        justifyContent={'space-between'}
+        // position="static"
+        sx={{
+          height: "9.5vh",
+          // width: "100%",
+          backgroundColor: "#202C33",
+          padding:"6px 16px",
+        }}
+      >
+        <IconButton sx={{ p: 0 }}
+          onClick={openDrawer}
         >
           <Avatar sx={{ bgcolor: deepOrange[500], fontSize: "medium" }}>
             K
           </Avatar>
         </IconButton>
-
-      </Stack>
-      <Stack direction="row"
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          gap: 1,
-          width: "50%",
-          // paddingRight: "0px"
-        }}
-      >
-        <IconButton>
-          <CommunitiesIcon />
-        </IconButton>
-
-        <IconButton>
-          <StatusIcon />
-        </IconButton>
-
-        <IconButton>
-          <ChannelsIcon />
-        </IconButton>
-
-        <IconButton>
-          <NewChatIcon />
-        </IconButton>
-
-        <IconButton
-       >
-        <AccountMenu/>
-         
-        </IconButton>
-
-
-
-      </Stack>
-    </Toolbar>
-    <Drawer anchor="left" open={profileOpen}
-      // onClose={toggleDrawer}
-      >
-        <Box sx={{ width: "30vw", height: "100vh", display: "flex", flexDirection: "column" }}
+        <Stack
+          direction={"row"}
+          alignItems={"center"}
+          justifyContent={"flex-end"}
         >
-          <Stack
-            sx={{ display: "flex", alignItems: "flex-end", flexDirection: "row", justifyContent: "flex-start", backgroundColor: "#006654", height: "18%", width: "100%" }}
+          <IconButton>
+            <CommunitiesIcon />
+          </IconButton>
+
+          <IconButton>
+            <StatusIcon />
+          </IconButton>
+
+          <IconButton>
+            <ChannelsIcon />
+          </IconButton>
+
+          <IconButton>
+            <NewChatIcon />
+          </IconButton>
+
+          <IconButton>
+            <AccountMenu />
+          </IconButton>
+        </Stack>
+        <Drawer anchor="left" open={profileOpen}
+          // onClose={toggleDrawer}
+        >
+          <Box sx={{ width: "30vw", height: "100vh", display: "flex", flexDirection: "column" }}
           >
-            <Box
-              sx={{ display: "flex", padding: "2px", marginLeft: "20px", marginBottom: "10px" }}
+            <Stack
+              sx={{ display: "flex", alignItems: "flex-end", flexDirection: "row", justifyContent: "flex-start", backgroundColor: "#006654", height: "18%", width: "100%" }}
             >
               <Box
-                onClick={closeDrawer}
+                sx={{ display: "flex", padding: "2px", marginLeft: "20px", marginBottom: "10px" }}
               >
-                {/* // sx={{}} */}
+                <Box
+                  onClick={closeDrawer}
+                >
 
 
-                <ArrowBackIcon
-                  sx={{ color: "#aebac1", marginBottom: "4px" }}
-                />
+                  <ArrowBackIcon
+                    sx={{ color: "#aebac1", marginBottom: "4px" }}
+                  />
+                </Box>
+                <Typography
+                  sx={{ fontSize: "18px", marginLeft: "20px", color: "white" }}
+                >
+                  Profile
+                </Typography>
+
               </Box>
-              <Typography
-                sx={{ fontSize: "18px", marginLeft: "20px", color: "white" }}
-              >
-                Profile
-              </Typography>
-              
-            </Box>
 
-          </Stack>
-          <Stack
-            sx={{ display: "flex", height: "82%", width: "100%", bgcolor:"green" }}
-          >
-            <Box
-              sx={{
-                display:"flex",height: "55%", width: "100%", bgcolor:"yellow",
-                justifyContent:"center",
-                alignItems:"center" 
-              }}
+            </Stack>
+            <Stack
+              sx={{ display: "flex", height: "82%", width: "100%", bgcolor: "green" }}
             >
-              <IconButton>
-              <Avatar
-              sx={{height:"35vh",width:"20vw", fontSize:"100px"}}
+              <Box
+                sx={{
+                  display: "flex", height: "55%", width: "100%", bgcolor: "yellow",
+                  justifyContent: "center",
+                  alignItems: "center"
+                }}
               >
+                <IconButton>
+                  <Avatar
+                    sx={{ height: "35vh", width: "20vw", fontSize: "100px" }}
+                  >
+                    K
+                  </Avatar>
+                </IconButton>
+
+              </Box>
+
+            </Stack>
+
+
+          </Box>
+        </Drawer>
+      </Stack>
+</>
+      )
+}
+
+
+
+      {/* 
+      <Stack
+        // position="static"
+        sx={{
+          height: "9.5vh",
+          width: "100%",
+          backgroundColor: "#202C33",
+          display: "flex",
+          justifyContent: "flex-start",
+        }}
+      >
+        <Toolbar
+          disableGutters
+          sx={{
+            display: "flex",
+            height: "5vh",
+            width: "75%",
+            paddingLeft: "15px",
+          }}
+        >
+          <Stack
+            alignItems="flex-start"
+            sx={{ width: "50%", display: "flex", p: 0 }}>
+            <IconButton sx={{ p: 0 }}
+              onClick={openDrawer}
+            >
+              <Avatar sx={{ bgcolor: deepOrange[500], fontSize: "medium" }}>
                 K
               </Avatar>
-              </IconButton>
-
-            </Box>
+            </IconButton>
 
           </Stack>
+          <Stack direction="row"
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              gap: 1,
+              width: "50%",
+            }}
+          >
+            <IconButton>
+              <CommunitiesIcon />
+            </IconButton>
+
+            <IconButton>
+              <StatusIcon />
+            </IconButton>
+
+            <IconButton>
+              <ChannelsIcon />
+            </IconButton>
+
+            <IconButton>
+              <NewChatIcon />
+            </IconButton>
+
+            <IconButton>
+              <AccountMenu />
+            </IconButton>
 
 
-        </Box>
-      </Drawer>
-  </Stack>
-  
-  )
-}
+
+          </Stack>
+        </Toolbar>
+        <Drawer anchor="left" open={profileOpen}
+          onClose={toggleDrawer}
+        >
+          <Box sx={{ width: "30vw", height: "100vh", display: "flex", flexDirection: "column" }}
+          >
+            <Stack
+              sx={{ display: "flex", alignItems: "flex-end", flexDirection: "row", justifyContent: "flex-start", backgroundColor: "#006654", height: "18%", width: "100%" }}
+            >
+              <Box
+                sx={{ display: "flex", padding: "2px", marginLeft: "20px", marginBottom: "10px" }}
+              >
+                <Box
+                  onClick={closeDrawer}
+                >
+
+
+                  <ArrowBackIcon
+                    sx={{ color: "#aebac1", marginBottom: "4px" }}
+                  />
+                </Box>
+                <Typography
+                  sx={{ fontSize: "18px", marginLeft: "20px", color: "white" }}
+                >
+                  Profile
+                </Typography>
+
+              </Box>
+
+            </Stack>
+            <Stack
+              sx={{ display: "flex", height: "82%", width: "100%", bgcolor: "green" }}
+            >
+              <Box
+                sx={{
+                  display: "flex", height: "55%", width: "100%", bgcolor: "yellow",
+                  justifyContent: "center",
+                  alignItems: "center"
+                }}
+              >
+                <IconButton>
+                  <Avatar
+                    sx={{ height: "35vh", width: "20vw", fontSize: "100px" }}
+                  >
+                    K
+                  </Avatar>
+                </IconButton>
+
+              </Box>
+
+            </Stack>
+
+
+          </Box>
+        </Drawer>
+      </Stack> */}
+
+    // </>
+
 
 export default SideBarHead;
 
@@ -169,19 +272,19 @@ function AccountMenu() {
     setAnchorEl(null);
   };
   return (
-      <>
-          <IconButton
-            onClick={handleClick}
-            size="small"
-            // sx={{ ml: 2 }}
-            aria-controls={open ? 'account-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-          >
-             <MenuIcon />
-          </IconButton>
-        
-      
+    <>
+      <IconButton
+        onClick={handleClick}
+        size="small"
+        // sx={{ ml: 2 }}
+        aria-controls={open ? 'account-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+      >
+        <MenuIcon />
+      </IconButton>
+
+
       <Menu
         anchorEl={anchorEl}
         id="account-menu"
@@ -218,17 +321,17 @@ function AccountMenu() {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <MenuItem onClick={handleClose}>
-           New Group
+          New Group
         </MenuItem>
         <MenuItem onClick={handleClose}>
-           New Community
+          New Community
         </MenuItem>
-        
+
         <MenuItem onClick={handleClose}>
           Archived
         </MenuItem>
         <MenuItem onClick={handleClose}>
-           Starred Message
+          Starred Message
         </MenuItem>
         <MenuItem onClick={handleClose}>
           Select Chats
@@ -243,7 +346,7 @@ function AccountMenu() {
 
 
 
-      </>
+    </>
   );
 }
 

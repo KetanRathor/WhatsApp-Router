@@ -1,12 +1,13 @@
 import React from "react";
 import { useState } from "react";
-import { Box, AppBar, Stack, Toolbar, Divider, Avatar, Input, List, ListItem, ListItemAvatar, ListItemText, Button, Paper, Drawer, IconButton, Typography } from "@mui/material";
+import { Box, AppBar, Stack, Toolbar, Divider, Avatar, Input, List, ListItem, ListItemAvatar, ListItemText, Button, Paper, Drawer, IconButton, Typography, Grid } from "@mui/material";
 import { deepOrange } from "@mui/material/colors";
 // import CommunitiesIcon, { StatusIcon, ChannelsIcon, NewChatIcon, MenuIcon, DrawerBackIcon } from "./Icons/IconsAppBar";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import MailOutlineIcon from "@mui/icons-material/MailOutline"; 
+import getCurrentTime from "../CurrentTime";
 
 const Person = (props) =>{
  let lastMsg = props.person.messages.length;
@@ -15,11 +16,13 @@ const Person = (props) =>{
   return(
     <>
                <ListItem 
+               
               //  key={person.id} 
               //  component="div" 
                 onClick={() => props.handlePersonClick(props.person)}
 
                   sx={{
+                    overflow:"hidden",
                     cursor: 'pointer',
                     '&:hover': {
                       backgroundColor: '#394B59',  // Add a background color on hover if desired
@@ -30,18 +33,43 @@ const Person = (props) =>{
                     <Avatar
                     >{props.person.name[0]}</Avatar>
                   </ListItemAvatar>
-                  <ListItemText
-                    primary={props.person.name}
-                    secondary={props.person.messages[lastMsg-1]}
+                  <ListItemText>
+                  <Box 
+                  display={"flex"}
+                  justifyContent={"space-between"}
+                  >
+                  <Typography
+                  display={"flex"}
+                  
+                  >{props.person.name}</Typography>
+                  <Typography
+                  sx={{fontSize:"11px"}}
+                  >{getCurrentTime()}</Typography>
+                  </Box>
+                  {/* <Typography
+                  gap={"2"}
+                  >
+                  {getCurrentTime()}
+                  </Typography> */}
+                  <Typography
+                  variant="caption"
+                  >{props.person.messages[lastMsg-1]}</Typography>
+                  {/* <Typography>
+                  {getCurrentTime()}
+                  </Typography> */}
+                  </ListItemText>
+                    
+                    {/* // primary={}
+                    // secondary={props.person.messages[lastMsg-1]}
   
-                    primaryTypographyProps={{ sx: { color: "white" } }}
-                    secondaryTypographyProps={{
-                      sx: {
-                        color: "#aebac1",
-                        // borderBottom:"1px solid rgba(255, 255, 255, 0.5)" 
-                      }
-                    }}
-                  />
+                    // primaryTypographyProps={{ sx: { color: "white" } }}
+                    // secondaryTypographyProps={{
+                    //   sx: {
+                    //     color: "#aebac1",
+                    //     // borderBottom:"1px solid rgba(255, 255, 255, 0.5)" 
+                    //   }
+                    // }} */}
+                  
                   
                 </ListItem>
                 <Divider

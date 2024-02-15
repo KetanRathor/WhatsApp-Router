@@ -47,7 +47,6 @@ const ChatSectionFooter = (props) => {
         alignItems={"center"}
         spacing={2}
         // paddingLeft={"5px"}
-        // paddingLeft={"5px"}
         sx={{ height: "13vh", width: "100%", bgcolor: "black" }}
       >
         <IconButton>
@@ -59,17 +58,7 @@ const ChatSectionFooter = (props) => {
             transform: 'rotate(360deg)'
            }}
           />
-          <AccountMenu 
-          sx={{
-            transform: 'rotate(360deg)'
-           }}
-          />
         </IconButton>
-        <Box
-          sx={{ 
-            display:"flex", justifyContent:"center", alignItems:"center",width: "80%",bgcolor:"#222E35"
-            // height: "9vh", width: "80%"
-           }}
         <Box
           sx={{ 
             display:"flex", justifyContent:"center", alignItems:"center",width: "80%",bgcolor:"#222E35"
@@ -98,18 +87,14 @@ const ChatSectionFooter = (props) => {
           <TextField id="standard-basic" placeholder="Type a message"
           
             sx={{ height: "50%", width: "100%"}}
-          
-            sx={{ height: "50%", width: "100%"}}
             InputProps={{
               disableUnderline: "true",
-              
               
 
             }}
             onChange = {onHandleChange}
             value={inputMessage}
           />
-        </Box>
         </Box>
         {/* <IconButton>
             <MicIcon/>
@@ -185,244 +170,9 @@ function AccountMenu() {
               width: 10,
               height: 10,
               bgcolor: 'background.paper',
-              transform: 'translateY(-50%) rotate(45deg)',
+              transform: 'translateY(-50%) rotate(135deg)',
               zIndex: 0,
-            },
-          },
-        }}
-        transformOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-        anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
-      >
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <DescriptionIcon 
-            color="primary" 
-            fontSize="small" />
-          </ListItemIcon>
-          Document
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <PhotoIcon fontSize="small"
-            color="error" 
-            />
-          </ListItemIcon>
-          Photos & Videos
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <CameraIcon 
-            color="warning" 
-            fontSize="small" />
-          </ListItemIcon>
-          Camera
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <ContactsIcon
-            color="info" 
-            fontSize="small" />
-          </ListItemIcon>
-          Contact
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <PollIcon 
-            color="success" 
-            fontSize="small" />
-          </ListItemIcon>
-          Poll
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <EmojiEmotionsIcon 
-            color="secondary" 
-            fontSize="small" />
-          </ListItemIcon>
-          New sticker
-        </MenuItem>
-      </Menu>
-
-
-
-      </>
-  );
-}
-
-function AccountMenu() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-  return (
-      <>
-          <IconButton
-            onClick={handleClick}
-            size="small"
-            // sx={{ ml: 2 }}
-            aria-controls={open ? 'account-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-          >
-             <AddIcon
-             sx={{
-              transform: 'rotate(360deg)'
-             }}
-             />
-          </IconButton>
-        
-      
-      <Menu
-        anchorEl={anchorEl}
-        id="account-menu"
-        open={open}
-        onClose={handleClose}
-        onClick={handleClose}
-        PaperProps={{
-          elevation: 0,
-          sx: {
-            overflow: 'visible',
-            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-            mt: 1.5,
-            '& .MuiAvatar-root': {
-              width: 32,
-              height: 32,
-              ml: -0.5,
-              mr: 1,
-            },
-            '&::before': {
-              content: '""',
-              display: 'block',
-              position: 'absolute',
-              top: 0,
-              right: 14,
-              width: 10,
-              height: 10,
-              bgcolor: 'background.paper',
-              transform: 'translateY(-50%) rotate(45deg)',
-              zIndex: 0,
-            },
-          },
-        }}
-        transformOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-        anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
-      >
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <DescriptionIcon 
-            color="primary" 
-            fontSize="small" />
-          </ListItemIcon>
-          Document
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <PhotoIcon fontSize="small"
-            color="error" 
-            />
-          </ListItemIcon>
-          Photos & Videos
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <CameraIcon 
-            color="warning" 
-            fontSize="small" />
-          </ListItemIcon>
-          Camera
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <ContactsIcon
-            color="info" 
-            fontSize="small" />
-          </ListItemIcon>
-          Contact
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <PollIcon 
-            color="success" 
-            fontSize="small" />
-          </ListItemIcon>
-          Poll
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <EmojiEmotionsIcon 
-            color="secondary" 
-            fontSize="small" />
-          </ListItemIcon>
-          New sticker
-        </MenuItem>
-      </Menu>
-
-
-
-      </>
-  );
-}
-
-function AccountMenu() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-  return (
-      <>
-          <IconButton
-            onClick={handleClick}
-            size="small"
-            // sx={{ ml: 2 }}
-            aria-controls={open ? 'account-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-          >
-             <AddIcon
-             sx={{
-              transform: 'rotate(360deg)'
-             }}
-             />
-          </IconButton>
-        
-      
-      <Menu
-        anchorEl={anchorEl}
-        id="account-menu"
-        open={open}
-        onClose={handleClose}
-        onClick={handleClose}
-        PaperProps={{
-          elevation: 0,
-          sx: {
-            overflow: 'visible',
-            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-            mt: 1.5,
-            '& .MuiAvatar-root': {
-              width: 32,
-              height: 32,
-              ml: -0.5,
-              mr: 1,
-            },
-            '&::before': {
-              content: '""',
-              display: 'block',
-              position: 'absolute',
-              top: 0,
-              right: 14,
-              width: 10,
-              height: 10,
-              bgcolor: 'background.paper',
-              transform: 'translateY(-50%) rotate(45deg)',
-              zIndex: 0,
+              
             },
           },
         }}
