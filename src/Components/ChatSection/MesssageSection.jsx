@@ -2,6 +2,9 @@ import { Grid, Paper, Stack, Typography } from "@mui/material";
 import React from "react";
 import bg from "../images/BackgroundImage.png"
 import { green } from "@mui/material/colors";
+import getCurrentTime from "../CurrentTime";
+
+
 
 const Message =(props) =>{
 
@@ -10,6 +13,7 @@ const Message =(props) =>{
         sx={{display:"flex",justifyContent:"flex-end",height:"4.5vh",width:"15vw",margin:"10px"}}
         >
             <Stack
+            display={"flex"}
             direction={"row"}
             spacing={2}
             sx={{height:"4.5vh",width:"20vw",bgcolor:"darkgreen",padding:"5px",borderRadius:"10px"}}
@@ -18,7 +22,7 @@ const Message =(props) =>{
                 {props.msg}
                 </Typography>
                 <Typography sx={{
-                    // marginTop:"1000px"
+                    //  marginTop: "2vh",
                 fontSize:"10px"}}>
                 {props.time}
                 </Typography> 
@@ -31,18 +35,20 @@ const Message =(props) =>{
 const MessageSection = (props) => {
         const style ={
             paperContainer:{
-                backgroundImage:`url(${bg})`,
+                backgroundImage:`linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url(${bg})`,
                 bagroundRepeat:"repeat",
+                backgroundSize: "cover",
+                // height:"100%",
 
             }
         }
 
         function chat (){
             let messArray = props.selectedPerson.messages;
-            let time = props.selectedPerson.time
+            // let time = props.selectedPerson.time
             let chatArr = [];
             for(let i = 0; i<messArray.length; i++){
-              chatArr.push(<Message msg={messArray[i]} time={time}
+              chatArr.push(<Message msg={messArray[i]} time={getCurrentTime()}
                 // handlePersonClick={props.handlePersonClick}
                 />)
             }
