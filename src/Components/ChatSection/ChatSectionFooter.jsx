@@ -6,10 +6,21 @@ import MicIcon from '@mui/icons-material/Mic';
 import SendIcon from '@mui/icons-material/Send';
 
 
+import ListItemIcon from '@mui/material/ListItemIcon';
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import DescriptionIcon from "@mui/icons-material/Description";
+import PhotoIcon from "@mui/icons-material/Photo";
+import CameraIcon from "@mui/icons-material/Camera";
+import ContactsIcon from "@mui/icons-material/Contacts";
+import PollIcon from "@mui/icons-material/Poll";
+import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
+import { yellow } from "@mui/material/colors";
+
 
 
 const ChatSectionFooter = (props) => {
-  // const [isHover,setIsHover] =useState(false)
+  
   const [inputMessage, setInputMessage] = useState("");
 
   function onHandleChange(e){
@@ -30,20 +41,29 @@ const ChatSectionFooter = (props) => {
 
   return (
     <>
-      <Stack direction={"row"}
+      <Stack 
+      display={"flex"}
+      direction={"row"}
         alignItems={"center"}
         spacing={2}
-        paddingLeft={"5px"}
+        // paddingLeft={"5px"}
         sx={{ height: "13vh", width: "100%", bgcolor: "black" }}
       >
         <IconButton>
           <SentimentVerySatisfiedIcon />
           </IconButton>
           <IconButton>
-          <AddIcon />
+          <AccountMenu 
+          sx={{
+            transform: 'rotate(360deg)'
+           }}
+          />
         </IconButton>
-        <Paper
-          sx={{ height: "9vh", width: "80%" }}
+        <Box
+          sx={{ 
+            display:"flex", justifyContent:"center", alignItems:"center",width: "80%",bgcolor:"#222E35"
+            // height: "9vh", width: "80%"
+           }}
         // sx={{ color: "#aebac1", fontSize: "14px" }}
         >
           {/* <TextField
@@ -65,15 +85,17 @@ const ChatSectionFooter = (props) => {
               /> */}
 
           <TextField id="standard-basic" placeholder="Type a message"
-            sx={{ height: "50%", width: "100%" }}
+          
+            sx={{ height: "50%", width: "100%"}}
             InputProps={{
               disableUnderline: "true",
+              
 
             }}
             onChange = {onHandleChange}
             value={inputMessage}
           />
-        </Paper>
+        </Box>
         {/* <IconButton>
             <MicIcon/>
             </IconButton> */}
@@ -94,3 +116,120 @@ const ChatSectionFooter = (props) => {
 }
 export default ChatSectionFooter;
 
+function AccountMenu() {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  return (
+      <>
+          <IconButton
+            onClick={handleClick}
+            size="small"
+            // sx={{ ml: 2 }}
+            aria-controls={open ? 'account-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+          >
+             <AddIcon
+             sx={{
+              transform: 'rotate(360deg)'
+             }}
+             />
+          </IconButton>
+        
+      
+      <Menu
+        anchorEl={anchorEl}
+        id="account-menu"
+        open={open}
+        onClose={handleClose}
+        onClick={handleClose}
+        PaperProps={{
+          elevation: 0,
+          sx: {
+            overflow: 'visible',
+            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+            mt: 1.5,
+            '& .MuiAvatar-root': {
+              width: 32,
+              height: 32,
+              ml: -0.5,
+              mr: 1,
+            },
+            '&::before': {
+              content: '""',
+              display: 'block',
+              position: 'absolute',
+              top: 0,
+              right: 14,
+              width: 10,
+              height: 10,
+              bgcolor: 'background.paper',
+              transform: 'translateY(-50%) rotate(45deg)',
+              zIndex: 0,
+            },
+          },
+        }}
+        transformOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+        anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
+      >
+        <MenuItem onClick={handleClose}>
+          <ListItemIcon>
+            <DescriptionIcon 
+            color="primary" 
+            fontSize="small" />
+          </ListItemIcon>
+          Document
+        </MenuItem>
+        <MenuItem onClick={handleClose}>
+          <ListItemIcon>
+            <PhotoIcon fontSize="small"
+            color="error" 
+            />
+          </ListItemIcon>
+          Photos & Videos
+        </MenuItem>
+        <MenuItem onClick={handleClose}>
+          <ListItemIcon>
+            <CameraIcon 
+            color="warning" 
+            fontSize="small" />
+          </ListItemIcon>
+          Camera
+        </MenuItem>
+        <MenuItem onClick={handleClose}>
+          <ListItemIcon>
+            <ContactsIcon
+            color="info" 
+            fontSize="small" />
+          </ListItemIcon>
+          Contact
+        </MenuItem>
+        <MenuItem onClick={handleClose}>
+          <ListItemIcon>
+            <PollIcon 
+            color="success" 
+            fontSize="small" />
+          </ListItemIcon>
+          Poll
+        </MenuItem>
+        <MenuItem onClick={handleClose}>
+          <ListItemIcon>
+            <EmojiEmotionsIcon 
+            color="secondary" 
+            fontSize="small" />
+          </ListItemIcon>
+          New sticker
+        </MenuItem>
+      </Menu>
+
+
+
+      </>
+  );
+}

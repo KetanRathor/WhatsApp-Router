@@ -14,10 +14,12 @@ function handleSearchInputChange(searchText)
 
     return(
         <>
-        <Paper
+        <Box
 
-elevation={3}
-sx={{ border: "1px solid black" }}
+elevation={2}
+sx={{ border: "1px solid black",
+// display:{xs:'none',sm:'block'} 
+}}
 >
     <Box
   sx={{
@@ -39,7 +41,7 @@ sx={{ border: "1px solid black" }}
         />
 
         </Box>
-        </Paper>
+        </Box>
         </>
     )
 }
