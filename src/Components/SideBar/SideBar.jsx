@@ -37,7 +37,7 @@ const SideBar = (props) => {
           <SideBarHead />
           <SideBarSeacrh handleSearchInputChange={handleSearchInputChange} />
           <SideBarList
-            people={props.people}
+            // people={props.people}
             searchName={searchName}
             handlePersonClick={props.handlePersonClick}
           />

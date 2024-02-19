@@ -1,8 +1,11 @@
 import { Box, Grid, Paper, Stack, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import bg from "../images/BackgroundImage.png"
 import { green } from "@mui/material/colors";
 import getCurrentTime from "../CurrentTime";
+
+import { useSelector, useDispatch } from "react-redux";
+// import { setSelectedPerson } from "../Slices/selctedPersonSlice";
 
 
 
@@ -43,7 +46,26 @@ const Message =(props) =>{
 }
 
 
-const MessageSection = (props) => {
+export default function MessageSection  (props) {
+    // const people = useSelector((state => state.people))
+
+    // const selectedPerson = useSelector((state) => state.selectedPerson)
+
+    // const dispatch = useDispatch()
+
+        // let messArray = []
+
+        // useEffect(() => {
+        //   messArray = props.selectedPerson.messages
+        // }, [props.selectedPerson])
+
+        // useEffect(() => {
+        //     props.setSelectedPerson(props.selectedPerson)
+          
+        // }, [people])
+        
+        
+
         const style ={
             paperContainer:{
                 backgroundImage:`linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url(${bg})`,
@@ -55,11 +77,22 @@ const MessageSection = (props) => {
         }
 
         function chat (){
-            let messArray = props.selectedPerson.messages;
+            
+
+            // let messArray = props.selectedPerson.messages;
+            // // let time = props.selectedPerson.time
+            // let chatArr = [];
+            // for(let i = 0; i<messArray.length; i++){
+            //   chatArr.push(<Message msg={messArray[i]} time={getCurrentTime()}
+            //     // handlePersonClick={props.handlePersonClick}
+            //     />)
+            // }
+            // return chatArr
+
             // let time = props.selectedPerson.time
             let chatArr = [];
-            for(let i = 0; i<messArray.length; i++){
-              chatArr.push(<Message msg={messArray[i]} time={getCurrentTime()}
+            for(let i = 0; i<props.selectedPerson.messages.length; i++){
+              chatArr.push(<Message msg={props.selectedPerson.messages[i]} time={getCurrentTime()}
                 // handlePersonClick={props.handlePersonClick}
                 />)
             }
@@ -97,4 +130,3 @@ const MessageSection = (props) => {
 
     )
 } 
-export default MessageSection;
