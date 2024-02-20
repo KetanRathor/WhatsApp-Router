@@ -1,19 +1,23 @@
 import React, { useState } from "react";
-import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import SideBarHeader from "./SideBarHeader";
 import { Box } from "@mui/material";
 import Screen from "./Screen";
 import ChatSection from "./ChatSection/ChatSection";
 import SideBar from "./SideBar/SideBar";
 import { useSelector,useDispatch } from "react-redux";
-import {setPeople} from "./Slices/peopleSlice";
-import { useEffect } from "react";
+import { setSelectedPerson } from "./Slices/selctedPersonSlice";
+// import {setPeople} from "./Slices/peopleSlice";
+// import { useEffect } from "react";
 // import { setSelectedPerson } from "./Slices/selctedPersonSlice";
 // import ChatSection from "./ChatSection/MesssageSection";
 
 
 const Main = () => {
+  const dispatch = useDispatch()
+
+  // useEffect(() => {
+  //   dispatch(setPeople())
+  // }, [])
+  
   
 
   // const [people, setPeople] = useState([
@@ -25,18 +29,19 @@ const Main = () => {
   //   { contactNumber: 6666666666, name: "Abhishek", messages: ["asdjk! ", "How Are You"] ,time:"2.00pm"},
   //   { contactNumber: 7777777777, name: "Abhinandan", messages: ["aslkckla! ", "How Are You"] ,time:"2.00pm"},
   //   { contactNumber: 8888888888, name: "Pragya", messages: ["akscnnac! ", "How Are You"],time:"2.00pm" }
-  //   // Add more people as needed
+ 
   // ]);
 
   const people = useSelector((state) => state.people)
 
-  const [selectedPerson, setSelectedPerson] = useState("");
+  const selectedPerson = useSelector((state)=>state.selectedPerson)
+  // const [selectedPerson, setSelectedPerson] = useState("");
 
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(setPeople())
-   }, [])
+  // useEffect(() => {
+  //   dispatch(setPeople())
+  //  }, [])
 
 
   // const theme = useTheme();
@@ -48,11 +53,11 @@ const Main = () => {
   // const [sentText,setSentText] = useState("")
 
 
-  function handlePersonClick(person) {
-    console.log("ghghjghj",person)
-    setSelectedPerson(person);
-    console.log("ssss",person);
-  };
+  // function handlePersonClick(person) {
+  //   console.log("ghghjghj",person)
+  //   dispatch(setSelectedPerson(person));
+  //   console.log("ssss",person);
+  // };
 
   // function SendMessage(text){
   //   console.log(people);
@@ -81,19 +86,19 @@ const Main = () => {
       
       <SideBar
       // people={people}
-      handlePersonClick ={handlePersonClick}
-      selectedPerson = {selectedPerson}
+      // handlePersonClick ={handlePersonClick}
+      // selectedPerson = {selectedPerson}
       />
       
       
       {selectedPerson ? 
       <ChatSection 
       // people={people}
-      selectedPerson = {selectedPerson}
-      setSelectedPerson ={setSelectedPerson}
+      // selectedPerson = {selectedPerson}
+      // setSelectedPerson ={setSelectedPerson}
       // SendMessage= {SendMessage}
       /> : <Screen
-      selectedPerson = {selectedPerson}
+      // selectedPerson = {selectedPerson}
       
       />}
       

@@ -22,8 +22,11 @@ import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import { useSelector } from "react-redux";
+// import { setSelectedPerson } from "../Slices/selctedPersonSlice";
 
 const ChatSectionHeader = (props) => {
+
+  const selectedPerson = useSelector((state)=>state.selectedPerson)
 
     return (
         <>
@@ -60,7 +63,7 @@ const ChatSectionHeader = (props) => {
                         
 
                         <Avatar sx={{ bgcolor: deepOrange[500], fontSize: "medium" }}>
-                        {props.selectedPerson.name[0]}
+                        {selectedPerson.name}
                         </Avatar>
                     </Box>
                     <Box
@@ -68,7 +71,7 @@ const ChatSectionHeader = (props) => {
                         //  marginLeft: "5px"
                          }}
                     >
-                        {props.selectedPerson.name}
+                        {selectedPerson.name}
                     </Box>
                     <Box
                         sx={{ display: "flex",alignItems:"center",justifyContent:"flex-end", height: "100%", width: "20%", gap:3, marginLeft:"20px" }}

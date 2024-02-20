@@ -18,14 +18,17 @@ import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import { yellow } from "@mui/material/colors";
 import { useSelector, useDispatch } from "react-redux";
 import { setPeople, newMessage } from "../Slices/peopleSlice";
+import {setSelectedPerson} from "../Slices/selctedPersonSlice";
 
 
 
 const ChatSectionFooter = (props) => {
-  
+  const selectedPerson = useSelector((state) => state.selectedPerson)
+
+
   const [inputMessage, setInputMessage] = useState("");
 
-  const people = useSelector((state)=> state.people)
+  const people = useSelector((state) => state.people)
 
   const dispatch = useDispatch()
 
@@ -33,11 +36,11 @@ const ChatSectionFooter = (props) => {
 
 
 
-  function onHandleChange(e){
-    
-    let text= e.target.value;
+  function onHandleChange(e) {
+
+    let text = e.target.value;
     setInputMessage(text);
-    console.log("fffff",text);
+    console.log("fffff", text);
   }
 
   // function SendMessage(text){
@@ -45,7 +48,7 @@ const ChatSectionFooter = (props) => {
   //   let clonePeople = JSON.parse(JSON.stringify(people)) 
   //   // console.log("clonePeoplae", clonePeople)
   //   // console.log("selectedPerson.messages",props.selectedPerson.messages);
-  //   let msgArr=[...props.selectedPerson.messages]
+  // let msgArr=[...props.selectedPerson.messages]
   //   // console.log("msgArr", msgArr)
   //   msgArr.push(text)
   //   let index=clonePeople.findIndex(user=>user.contactNumber===props.selectedPerson.contactNumber)
@@ -61,8 +64,8 @@ const ChatSectionFooter = (props) => {
   function SendMessage(text){
 
     // dispatch(newMessage({ contactNumber: props.selectedPerson.contactNumber , message: text }))
-    
-    console.log(people);
+
+    // console.log(people);
     let clonePeople = JSON.parse(JSON.stringify(people)) 
     // console.log("clonePeoplae", clonePeople)
     // console.log("selectedPerson.messages",props.selectedPerson.messages);
@@ -72,6 +75,10 @@ const ChatSectionFooter = (props) => {
     let index=clonePeople.findIndex(user=>user.contactNumber===props.selectedPerson.contactNumber)
     clonePeople[index].messages = msgArr
     console.log("clonePeople", clonePeople)
+    // clonePeople[index] = {
+    //   ...clonePeople[index],
+    //   messages: msgArr
+    // };
     // setPeople(clonePeople);
     // dispatch(setPeople(clonePeople))
     dispatch(newMessage({ contactNumber: props.selectedPerson.contactNumber , message: text }))
@@ -84,18 +91,23 @@ const ChatSectionFooter = (props) => {
   const handleSendMessage = () => {
     if (inputMessage.trim() !== "") {
       // console.log("inputMessage", inputMessage)
-      SendMessage(inputMessage);
+      // SendMessage();
+
+
+      selectedPerson.messages.push(inputMessage)
+      dispatch(newMessage({ contactNumber: selectedPerson.contactNumber, message: inputMessage }))
+      dispatch(setSelectedPerson(selectedPerson))
       setInputMessage("");
       // console.log("sentMess",inputMessage);
-      
+
     }
   };
 
   return (
     <>
-      <Stack 
-      display={"flex"}
-      direction={"row"}
+      <Stack
+        display={"flex"}
+        direction={"row"}
         alignItems={"center"}
         spacing={2}
         // paddingLeft={"5px"}
@@ -103,19 +115,19 @@ const ChatSectionFooter = (props) => {
       >
         <IconButton>
           <SentimentVerySatisfiedIcon />
-          </IconButton>
-          <IconButton>
-          <AccountMenu 
-          sx={{
-            transform: 'rotate(360deg)'
-           }}
+        </IconButton>
+        <IconButton>
+          <AccountMenu
+            sx={{
+              transform: 'rotate(360deg)'
+            }}
           />
         </IconButton>
         <Box
-          sx={{ 
-            display:"flex", justifyContent:"center", alignItems:"center",width: "80%",bgcolor:"#222E35"
+          sx={{
+            display: "flex", justifyContent: "center", alignItems: "center", width: "80%", bgcolor: "#222E35"
             // height: "9vh", width: "80%"
-           }}
+          }}
         // sx={{ color: "#aebac1", fontSize: "14px" }}
         >
           {/* <TextField
@@ -137,14 +149,14 @@ const ChatSectionFooter = (props) => {
               /> */}
 
           <TextField id="standard-basic" placeholder="Type a message"
-          
-            sx={{ height: "50%", width: "100%"}}
+
+            sx={{ height: "50%", width: "100%" }}
             InputProps={{
               disableUnderline: "true",
-              
+
 
             }}
-            onChange = {onHandleChange}
+            onChange={onHandleChange}
             value={inputMessage}
           />
         </Box>
@@ -152,11 +164,11 @@ const ChatSectionFooter = (props) => {
             <MicIcon/>
             </IconButton> */}
         <IconButton
-        // onClick={()=>props.SendMessage(inputMessage)}
-        onClick={handleSendMessage}
+          // onClick={()=>props.SendMessage(inputMessage)}
+          onClick={handleSendMessage}
         >
-          {inputMessage ? <SendIcon/> :<MicIcon/>}
-          
+          {inputMessage ? <SendIcon /> : <MicIcon />}
+
         </IconButton>
 
 
@@ -181,23 +193,23 @@ function AccountMenu() {
     setAnchorEl(null);
   };
   return (
-      <>
-          <IconButton
-            onClick={handleClick}
-            size="small"
-            // sx={{ ml: 2 }}
-            aria-controls={open ? 'account-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-          >
-             <AddIcon
-             sx={{
-              transform: 'rotate(360deg)'
-             }}
-             />
-          </IconButton>
-        
-      
+    <>
+      <IconButton
+        onClick={handleClick}
+        size="small"
+        // sx={{ ml: 2 }}
+        aria-controls={open ? 'account-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+      >
+        <AddIcon
+          sx={{
+            transform: 'rotate(360deg)'
+          }}
+        />
+      </IconButton>
+
+
       <Menu
         anchorEl={anchorEl}
         id="account-menu"
@@ -227,7 +239,7 @@ function AccountMenu() {
               bgcolor: 'background.paper',
               transform: 'translateY(-50%) rotate(135deg)',
               zIndex: 0,
-              
+
             },
           },
         }}
@@ -236,49 +248,49 @@ function AccountMenu() {
       >
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
-            <DescriptionIcon 
-            color="primary" 
-            fontSize="small" />
+            <DescriptionIcon
+              color="primary"
+              fontSize="small" />
           </ListItemIcon>
           Document
         </MenuItem>
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
             <PhotoIcon fontSize="small"
-            color="error" 
+              color="error"
             />
           </ListItemIcon>
           Photos & Videos
         </MenuItem>
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
-            <CameraIcon 
-            color="warning" 
-            fontSize="small" />
+            <CameraIcon
+              color="warning"
+              fontSize="small" />
           </ListItemIcon>
           Camera
         </MenuItem>
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
             <ContactsIcon
-            color="info" 
-            fontSize="small" />
+              color="info"
+              fontSize="small" />
           </ListItemIcon>
           Contact
         </MenuItem>
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
-            <PollIcon 
-            color="success" 
-            fontSize="small" />
+            <PollIcon
+              color="success"
+              fontSize="small" />
           </ListItemIcon>
           Poll
         </MenuItem>
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
-            <EmojiEmotionsIcon 
-            color="secondary" 
-            fontSize="small" />
+            <EmojiEmotionsIcon
+              color="secondary"
+              fontSize="small" />
           </ListItemIcon>
           New sticker
         </MenuItem>
@@ -286,6 +298,6 @@ function AccountMenu() {
 
 
 
-      </>
+    </>
   );
 }

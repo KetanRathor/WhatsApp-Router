@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 
 export const peopleSlice = createSlice({
     name: 'people',
@@ -25,11 +25,12 @@ export const peopleSlice = createSlice({
     //     ]
     // },
     reducers: {
-        setPeople: (state, action) => {
-
-            state = action.payload
-            // console.log("setProple" ,state.contacts)
-        },
+        // setPeople: (state, action) => {
+        //     // console.log("kkkkkkkkkkk",state);
+        //     // state = action.payload
+        //     console.log("first",current(state));
+        //     // console.log("setProple" ,state.contacts)
+        // },
         // newMessage: (state, action) => {
         //     // dispatch(newMessage({ contactNumber: "", message: "" }))
 
@@ -39,18 +40,41 @@ export const peopleSlice = createSlice({
         //         }
         //     })
         // },
-        newMessage: (state, action) => {
-            const person = state.find(people => people.contactNumber === action.payload.contactNumber);
+        newMessage (state, action) {
+            
+            // let clonePeople = JSON.parse(JSON.stringify(state)) 
+            // console.log("actuib.oayhdsj", action.payload)
+
+            // const contact = state.find((people)=> people.contactNumber === action.payload.contactNumber)
+
+            // if (contact) {
+            //     contact.messages.push(action)
+            // }
+
+            const personIndex = state.findIndex(people => people.contactNumber === action.payload.contactNumber);
+            // const clonePeopleIndex = clonePeople.findIndex(clonePeople => clonePeople.contactNumber === action.payload.contactNumber);
             // console.log("111111111",state);
             // console.log("action.payload.contactNumber",action.payload.contactNumber);
             // console.log("action.payload.message",action.payload.message);
-            if (person) {
-
-                person.messages.push(action.payload.message);
+            if (personIndex!==-1) {
+                // console.log("jjjjjj",peopleIndex);
+                state[personIndex].messages.push(action.payload.message);
+              
                 // console.log(";;;;;;;;;;;",person)
 
             }
             // state.push(action.payload)
+
+            // const clonePeopleIndex = clonePeople.findIndex(clonePeople=>clonePeople.contactNumber === action.payload.contactNumber);
+            // if(clonePeopleIndex){
+            //     let clonedPeople = {...clonePeople[clonePeopleIndex]};
+            
+            // let clonedMessages = [...clonedPeople.messages];
+            // clonedMessages.push(action.payload.messages)
+            // clonedPerson = { ...clonedPerson, messages: clonedMessages };
+            // clonePeople[clonePeopleIndex] = clonedPerson;
+            // }
+            // state = clonePeople;
         },
     },
 })

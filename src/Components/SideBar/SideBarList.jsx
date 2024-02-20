@@ -8,11 +8,19 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import getCurrentTime from "../CurrentTime";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setSelectedPerson } from "../Slices/selctedPersonSlice";
 
 const Person = (props) => {
+  const dispatch = useDispatch()
+
   let lastMsg = props.person.messages.length;
 
+  // function handlePersonClick(person) {
+  //   console.log("ghghjghj", person)
+  //   dispatch(setSelectedPerson(person));
+  //   console.log("ssss", person);
+  // };
 
 
 
@@ -22,7 +30,7 @@ const Person = (props) => {
 
         //  key={person.id} 
         //  component="div" 
-        onClick={() => props.handlePersonClick(props.person)}
+        onClick={() =>  dispatch(setSelectedPerson(props.person))}
 
         sx={{
           overflow: "hidden",
@@ -99,7 +107,9 @@ export default function SideBarList(props) {
 
     let arr = [];
     for (let i = 0; i < cloneArray.length; i++) {
-      arr.push(<Person person={cloneArray[i]} handlePersonClick={props.handlePersonClick} />)
+      arr.push(<Person person={cloneArray[i]} 
+        handlePersonClick={props.handlePersonClick} 
+        />)
     }
     return arr
   }

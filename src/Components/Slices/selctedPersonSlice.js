@@ -1,12 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+
 export const selectedPersonSlice = createSlice({
     name:"selectedPerson",
-    initialState:"",
+    initialState: "",
     reducers:{
         setSelectedPerson: (state,action) => {
-            state = action.payload
+            console.log("action.payload", action.payload)
+            // state = action.payload
+            return action.payload;
+            // console.log("dsfaaaaaaaaaaaaaaaaa", state)
         }
+
     }
 })
 
