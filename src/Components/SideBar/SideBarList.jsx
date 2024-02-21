@@ -9,7 +9,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import getCurrentTime from "../CurrentTime";
 import { useSelector, useDispatch } from "react-redux";
-import { setSelectedPerson } from "../Slices/selctedPersonSlice";
+import { setSelectedPerson } from "../Slices/peopleSlice";
 
 const Person = (props) => {
   const dispatch = useDispatch()
@@ -97,9 +97,10 @@ const Person = (props) => {
 
 
 export default function SideBarList(props) {
-  const people = useSelector((state) => state.people)
-
+  const people = useSelector((state) => state.people.contact)
+  console.log("first",people);
   let cloneArray = [...people]
+
   if (props.searchName) {
     cloneArray = cloneArray.filter(user => user.name.includes(props.searchName));
   }
@@ -109,6 +110,7 @@ export default function SideBarList(props) {
     for (let i = 0; i < cloneArray.length; i++) {
       arr.push(<Person person={cloneArray[i]} 
         handlePersonClick={props.handlePersonClick} 
+        key={i}
         />)
     }
     return arr

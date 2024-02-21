@@ -26,7 +26,7 @@ import { useSelector } from "react-redux";
 
 const ChatSectionHeader = (props) => {
 
-  const selectedPerson = useSelector((state)=>state.selectedPerson)
+  const selectedPerson = useSelector((state)=>state.people.selectedPerson)
 
     return (
         <>
@@ -63,7 +63,7 @@ const ChatSectionHeader = (props) => {
                         
 
                         <Avatar sx={{ bgcolor: deepOrange[500], fontSize: "medium" }}>
-                        {selectedPerson.name}
+                        {selectedPerson.name[0]}
                         </Avatar>
                     </Box>
                     <Box

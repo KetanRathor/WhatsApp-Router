@@ -5,7 +5,7 @@ import { green } from "@mui/material/colors";
 import getCurrentTime from "../CurrentTime";
 
 import { useSelector, useDispatch } from "react-redux";
-import { setSelectedPerson } from "../Slices/selctedPersonSlice";
+import { setSelectedPerson } from "../Slices/peopleSlice";
 
 
 
@@ -15,10 +15,13 @@ const Message = (props) => {
         <Box
 
             sx={{
-                // maxWidth:"100%",
-                display: "flex", justifyContent: "flex-end", height: "4.5vh",
+                maxWidth:"100%",
+                display: "flex", 
+                justifyContent: "flex-end", 
+                height: "4.5vh",
                 // width:"15vw",
-                margin: "10px"
+                margin: "10px",
+                // marginTop:"auto"
             }}
         >
             <Stack
@@ -30,7 +33,8 @@ const Message = (props) => {
                     height: "4.5vh",
                     // width:"20vw",
                     bgcolor: "darkgreen",
-                    padding: "5px", borderRadius: "10px"
+                    padding: "5px", borderRadius: "10px",
+                    
                 }}
             >
                 <Box
@@ -51,9 +55,9 @@ const Message = (props) => {
 
 
 export default function MessageSection(props) {
-    const people = useSelector((state => state.people))
+    const people = useSelector((state => state.people.contact))
 
-    let selectedPerson = useSelector((state) => state.selectedPerson)
+    let selectedPerson = useSelector((state) => state.people.selectedPerson)
 
     // function getData() {
     //     selectedPerson = useSelector((state) => state.selectedPerson)
@@ -90,7 +94,10 @@ export default function MessageSection(props) {
             backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url(${bg})`,
             bagroundRepeat: "repeat",
             backgroundSize: "cover",
+            // marginTop:"auto"
+
             // height:"100%",
+            
 
         }
     }
@@ -134,9 +141,12 @@ export default function MessageSection(props) {
 
                 // backgroundColor: "blue",
 
-
+                
                 overflow: "hidden",
-                border: "1px solid black"
+                border: "1px solid black",
+                marginTop:"auto",
+                bgcolor:"black"
+
 
             }}
 

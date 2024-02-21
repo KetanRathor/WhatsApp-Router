@@ -18,29 +18,24 @@ import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import { yellow } from "@mui/material/colors";
 import { useSelector, useDispatch } from "react-redux";
 import { setPeople, newMessage } from "../Slices/peopleSlice";
-import {setSelectedPerson} from "../Slices/selctedPersonSlice";
+// import {setSelectedPerson} from "../Slices/peopleSlice";
 
 
 
 const ChatSectionFooter = (props) => {
-  const selectedPerson = useSelector((state) => state.selectedPerson)
+  const selectedPerson = useSelector((state) => state.people.selectedPerson)
 
 
   const [inputMessage, setInputMessage] = useState("");
 
-  const people = useSelector((state) => state.people)
+  const people = useSelector((state) => state.people.contact)
 
   const dispatch = useDispatch()
-
-
-
-
 
   function onHandleChange(e) {
 
     let text = e.target.value;
     setInputMessage(text);
-    console.log("fffff", text);
   }
 
   // function SendMessage(text){
@@ -61,32 +56,32 @@ const ChatSectionFooter = (props) => {
 
   // }
 
-  function SendMessage(text){
+  // function SendMessage(text){
 
-    // dispatch(newMessage({ contactNumber: props.selectedPerson.contactNumber , message: text }))
+  //   // dispatch(newMessage({ contactNumber: props.selectedPerson.contactNumber , message: text }))
 
-    // console.log(people);
-    let clonePeople = JSON.parse(JSON.stringify(people)) 
-    // console.log("clonePeoplae", clonePeople)
-    // console.log("selectedPerson.messages",props.selectedPerson.messages);
-    let msgArr=[...props.selectedPerson.messages]
-    // console.log("msgArr", msgArr)
-    msgArr.push(text)
-    let index=clonePeople.findIndex(user=>user.contactNumber===props.selectedPerson.contactNumber)
-    clonePeople[index].messages = msgArr
-    console.log("clonePeople", clonePeople)
-    // clonePeople[index] = {
-    //   ...clonePeople[index],
-    //   messages: msgArr
-    // };
-    // setPeople(clonePeople);
-    // dispatch(setPeople(clonePeople))
-    dispatch(newMessage({ contactNumber: props.selectedPerson.contactNumber , message: text }))
-    // setPeople(clonePeople);
-    console.log("people", people)
-    // setSelectedPerson({...clonePeople[index]})
+  //   // console.log(people);
+  //   let clonePeople = JSON.parse(JSON.stringify(people)) 
+  //   // console.log("clonePeoplae", clonePeople)
+  //   // console.log("selectedPerson.messages",props.selectedPerson.messages);
+  //   let msgArr=[...props.selectedPerson.messages]
+  //   // console.log("msgArr", msgArr)
+  //   msgArr.push(text)
+  //   let index=clonePeople.findIndex(user=>user.contactNumber===props.selectedPerson.contactNumber)
+  //   clonePeople[index].messages = msgArr
+  //   console.log("clonePeople", clonePeople)
+  //   // clonePeople[index] = {
+  //   //   ...clonePeople[index],
+  //   //   messages: msgArr
+  //   // };
+  //   // setPeople(clonePeople);
+  //   // dispatch(setPeople(clonePeople))
+  //   dispatch(newMessage({ contactNumber: props.selectedPerson.contactNumber , message: text }))
+  //   // setPeople(clonePeople);
+  //   console.log("people", people)
+  //   // setSelectedPerson({...clonePeople[index]})
 
-  }
+  // }
 
   const handleSendMessage = () => {
     if (inputMessage.trim() !== "") {
@@ -94,9 +89,10 @@ const ChatSectionFooter = (props) => {
       // SendMessage();
 
 
-      selectedPerson.messages.push(inputMessage)
+      // selectedPerson.messages.push(inputMessage)
+      console.log("gela",selectedPerson,inputMessage);
       dispatch(newMessage({ contactNumber: selectedPerson.contactNumber, message: inputMessage }))
-      dispatch(setSelectedPerson(selectedPerson))
+      // dispatch(setSelectedPerson(selectedPerson))
       setInputMessage("");
       // console.log("sentMess",inputMessage);
 

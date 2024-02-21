@@ -4,10 +4,10 @@ import SideBarSeacrh from "./SideBarSearch";
 import SideBarList from "./SideBarList";
 import { Stack, Box, Paper } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
-// import { setSelectedPerson } from "../Slices/selctedPersonSlice";
+import { setSelectedPerson } from "../Slices/peopleSlice";
 
 const SideBar = (props) => {
-  const selectedPerson = useSelector((state) => state.selectedPerson)
+  const selectedPerson = useSelector((state) => state.people.selectedPerson)
 
   // const dispatch = useDispatch()
 
