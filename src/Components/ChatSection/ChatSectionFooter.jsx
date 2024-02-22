@@ -4,7 +4,7 @@ import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfi
 import AddIcon from '@mui/icons-material/Add';
 import MicIcon from '@mui/icons-material/Mic';
 import SendIcon from '@mui/icons-material/Send';
-
+import actionFunction from "../action";
 
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Menu from "@mui/material/Menu";
@@ -38,66 +38,15 @@ const ChatSectionFooter = (props) => {
     setInputMessage(text);
   }
 
-  // function SendMessage(text){
-  //   // console.log(people);
-  //   let clonePeople = JSON.parse(JSON.stringify(people)) 
-  //   // console.log("clonePeoplae", clonePeople)
-  //   // console.log("selectedPerson.messages",props.selectedPerson.messages);
-  // let msgArr=[...props.selectedPerson.messages]
-  //   // console.log("msgArr", msgArr)
-  //   msgArr.push(text)
-  //   let index=clonePeople.findIndex(user=>user.contactNumber===props.selectedPerson.contactNumber)
-  //   clonePeople[index].messages = msgArr
-  //   console.log("clonePeople", clonePeople)
-  //   // setPeople(clonePeople);
-  //   dispatch(setPeople(clonePeople))
-  //   console.log("people", people)
-  //   // setSelectedPerson({...clonePeople[index]})
-
-  // }
-
-  // function SendMessage(text){
-
-  //   // dispatch(newMessage({ contactNumber: props.selectedPerson.contactNumber , message: text }))
-
-  //   // console.log(people);
-  //   let clonePeople = JSON.parse(JSON.stringify(people)) 
-  //   // console.log("clonePeoplae", clonePeople)
-  //   // console.log("selectedPerson.messages",props.selectedPerson.messages);
-  //   let msgArr=[...props.selectedPerson.messages]
-  //   // console.log("msgArr", msgArr)
-  //   msgArr.push(text)
-  //   let index=clonePeople.findIndex(user=>user.contactNumber===props.selectedPerson.contactNumber)
-  //   clonePeople[index].messages = msgArr
-  //   console.log("clonePeople", clonePeople)
-  //   // clonePeople[index] = {
-  //   //   ...clonePeople[index],
-  //   //   messages: msgArr
-  //   // };
-  //   // setPeople(clonePeople);
-  //   // dispatch(setPeople(clonePeople))
-  //   dispatch(newMessage({ contactNumber: props.selectedPerson.contactNumber , message: text }))
-  //   // setPeople(clonePeople);
-  //   console.log("people", people)
-  //   // setSelectedPerson({...clonePeople[index]})
-
-  // }
 
   const handleSendMessage = () => {
     if (inputMessage.trim() !== "") {
-      // console.log("inputMessage", inputMessage)
-      // SendMessage();
-
-
-      // selectedPerson.messages.push(inputMessage)
       console.log("gela",selectedPerson,inputMessage);
-      dispatch(newMessage({ contactNumber: selectedPerson.contactNumber, message: inputMessage }))
-      // dispatch(setSelectedPerson(selectedPerson))
+      dispatch(actionFunction({ contactNumber: selectedPerson.contactNumber, message: inputMessage }))
       setInputMessage("");
-      // console.log("sentMess",inputMessage);
-
     }
   };
+
 
   return (
     <>
@@ -122,27 +71,11 @@ const ChatSectionFooter = (props) => {
         <Box
           sx={{
             display: "flex", justifyContent: "center", alignItems: "center", width: "80%", bgcolor: "#222E35"
-            // height: "9vh", width: "80%"
+            
           }}
-        // sx={{ color: "#aebac1", fontSize: "14px" }}
+        
         >
-          {/* <TextField
-                placeholder="Search or start new chat"
-                // fullWidth
-                // disableUnderline
-                variant="Stadard"
-                
-                sx={{
-                  color: "#aebac1",
-                  fontSize: "13px",
-
-                  height: "20%",
-                  width:"80%" ,
-                  "&:hover, &:focus": {
-                    outline: "none",
-                  },
-                }}
-              /> */}
+          
 
           <TextField id="standard-basic" placeholder="Type a message"
 
@@ -156,11 +89,7 @@ const ChatSectionFooter = (props) => {
             value={inputMessage}
           />
         </Box>
-        {/* <IconButton>
-            <MicIcon/>
-            </IconButton> */}
         <IconButton
-          // onClick={()=>props.SendMessage(inputMessage)}
           onClick={handleSendMessage}
         >
           {inputMessage ? <SendIcon /> : <MicIcon />}

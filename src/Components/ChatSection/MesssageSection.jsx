@@ -21,7 +21,6 @@ const Message = (props) => {
                 height: "4.5vh",
                 // width:"15vw",
                 margin: "10px",
-                // marginTop:"auto"
             }}
         >
             <Stack
@@ -34,6 +33,7 @@ const Message = (props) => {
                     // width:"20vw",
                     bgcolor: "darkgreen",
                     padding: "5px", borderRadius: "10px",
+                    marginTop:"auto"
                     
                 }}
             >
@@ -59,69 +59,29 @@ export default function MessageSection(props) {
 
     let selectedPerson = useSelector((state) => state.people.selectedPerson)
 
-    // function getData() {
-    //     selectedPerson = useSelector((state) => state.selectedPerson)
-    // }
-
-
-    // useEffect(() => {
-    //     <MessageSection/>
-    // }, [people])
-
-
-
-
-
-    // const selectedPerson = useSelector((state) => state.selectedPerson)
-
-    // const dispatch = useDispatch()
-
-    // let messArray = []
-
-    // useEffect(() => {
-    //   messArray = props.selectedPerson.messages
-    // }, [props.selectedPerson])
-
-    // useEffect(() => {
-    //     props.setSelectedPerson(props.selectedPerson)
-
-    // }, [people])
-
-
 
     const style = {
         paperContainer: {
             backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url(${bg})`,
             bagroundRepeat: "repeat",
             backgroundSize: "cover",
-            // marginTop:"auto"
-
-            // height:"100%",
             
-
         }
     }
 
     function chat() {
 
 
-        // let messArray = props.selectedPerson.messages;
-        // // let time = props.selectedPerson.time
-        // let chatArr = [];
-        // for(let i = 0; i<messArray.length; i++){
-        //   chatArr.push(<Message msg={messArray[i]} time={getCurrentTime()}
-        //     // handlePersonClick={props.handlePersonClick}
-        //     />)
-        // }
-        // return chatArr
-
-        // let time = props.selectedPerson.time
         let chatArr = [];
+       
         for (let i = 0; i < selectedPerson.messages.length; i++) {
             chatArr.push(<Message msg={selectedPerson.messages[i]} time={getCurrentTime()}
-            // handlePersonClick={props.handlePersonClick}
+            key={i}
+            
             />)
-        }
+            
+        // }
+    }
         // console.log("chatArr",chatArr)
         return chatArr
     }

@@ -2,26 +2,19 @@ import React, { useState } from "react";
 import SideBarHead from "./SideBarHead";
 import SideBarSeacrh from "./SideBarSearch";
 import SideBarList from "./SideBarList";
-import { Stack, Box, Paper } from "@mui/material";
+import {Box } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
-import { setSelectedPerson } from "../Slices/peopleSlice";
 
 const SideBar = (props) => {
   const selectedPerson = useSelector((state) => state.people.selectedPerson)
 
-  // const dispatch = useDispatch()
-
-
-  // function handlePersonClick(person) {
-  //   console.log("ghghjghj", person)
-  //   dispatch(setSelectedPerson(person));
-  //   console.log("ssss", person);
-  // };
 
 
   const [searchName, setSearchName] = useState("")
+
+
   function handleSearchInputChange(searchText) {
-    setSearchName(searchText)
+    setSearchName(searchText.toLowerCase());
   }
 
   return (
@@ -31,6 +24,7 @@ const SideBar = (props) => {
         // elevation={2}
         sx={{
           border: "1px solid black",
+          // display: { xs: selectedPerson ? 'none' : 'block', sm: 'block' }
           display: { xs: selectedPerson ? 'none' : 'block', sm: 'block' }
           // display:{xs:(props.selectedPerson)?"none":"block",sm:"block"}
         }}

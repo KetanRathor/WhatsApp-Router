@@ -63,7 +63,7 @@ const ChatSectionHeader = (props) => {
                         
 
                         <Avatar sx={{ bgcolor: deepOrange[500], fontSize: "medium" }}>
-                        {selectedPerson.name[0]}
+                        {selectedPerson.name ? selectedPerson.name[0] : null}
                         </Avatar>
                     </Box>
                     <Box

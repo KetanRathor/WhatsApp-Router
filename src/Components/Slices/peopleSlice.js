@@ -13,36 +13,28 @@ export const peopleSlice = createSlice({
         { contactNumber: 7777777777, name: "Abhinandan", messages: ["aslkckla! ", "How Are You"], time: "2.00pm" },
         { contactNumber: 8888888888, name: "Pragya", messages: ["akscnnac! ", "How Are You"], time: "2.00pm" }
     ],
-    selectedPerson: null
+    selectedPerson: {}
     
 },
     
     reducers: {
-        // setPeople: (state, action) => {
-        //     // console.log("kkkkkkkkkkk",state);
-        //     // state = action.payload
-        //     console.log("first",current(state));
-        //     // console.log("setProple" ,state.contacts)
-        // },
         setSelectedPerson: (state,action) => {
-            console.log("action.payload", action.payload)
             state.selectedPerson=action.payload
             
-            // return action.payload;
-            // console.log("dsfaaaaaaaaaaaaaaaaa", state)
         },
         
         newMessage (state, action) {   
-            const personIndex = state.contact.findIndex(people => people.contactNumber === action.payload.contactNumber);
+            // const selectedPerson=state.selectedPerson
+            // let msgArr=selectedPerson.messages
+            // msgArr.push(action.payload.message)
+            console.log("firsttttttttt",action.payload)
+            const personIndex = state.contact.findIndex(people => people.contactNumber === state.selectedPerson.contactNumber);
             console.log("first",personIndex);
            
             if (personIndex!==-1) {
-                state.contact[personIndex].messages.push(action.payload.message);
-                state.selectedPerson.messages.push(action.payload.message);
+                state.contact[personIndex].messages.push(action.payload);
+                 state.selectedPerson.messages.push(action.payload); 
             }
-            // state.push(action.payload)
-
-            // const clonePeopleIndex = clonePeople.findIndex(clonePeople=>clonePeople.contactNumber === action.payload.contactNumber);
             
         },
     },
