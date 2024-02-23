@@ -23,7 +23,8 @@ const SideBar = (props) => {
         display={"flex"}
         // elevation={2}
         sx={{
-          border: "1px solid black",
+          borderRight: "1px solid black",
+          // borderTop: "1px solid black",
           // display: { xs: selectedPerson ? 'none' : 'block', sm: 'block' }
           display: { xs: selectedPerson ? 'none' : 'block', sm: 'block' }
           // display:{xs:(props.selectedPerson)?"none":"block",sm:"block"}
