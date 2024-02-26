@@ -3,6 +3,7 @@ import { Box, Divider, Avatar, List, ListItem, ListItemAvatar, ListItemText, Typ
 import getCurrentTime from "../CurrentTime";
 import { useSelector, useDispatch } from "react-redux";
 import { setSelectedPerson } from "../Slices/peopleSlice";
+import { Link } from "react-router-dom";
 
 const Person = (props) => {
   const dispatch = useDispatch()
@@ -11,6 +12,7 @@ const Person = (props) => {
 
   return (
     <>
+    <Link to={`${props.person.contactNumber}`}>
       <ListItem
 
         onClick={() =>  dispatch(setSelectedPerson(props.person))}
@@ -49,6 +51,7 @@ const Person = (props) => {
 
       
       </ListItem>
+      </Link>
       <Divider
         variant="inset"
         component="li"
