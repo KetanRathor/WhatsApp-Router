@@ -6,6 +6,7 @@ import CommunitiesIcon, { StatusIcon, ChannelsIcon, NewChatIcon, MenuIcon } from
 import Menu from '@mui/material/Menu';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import MenuItem from '@mui/material/MenuItem';
+import { useParams } from 'react-router-dom';
 
 
 
@@ -18,6 +19,8 @@ const SideBarHead = () => {
   function closeDrawer() {
     setProfileOpen();
   }
+
+  
 
   return (
     <>

@@ -22,11 +22,21 @@ import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 // import { setSelectedPerson } from "../Slices/selctedPersonSlice";
 
 const ChatSectionHeader = (props) => {
 
   const selectedPerson = useSelector((state)=>state.people.selectedPerson)
+
+  const {mobileNo} = useParams()
+
+  console.log("param", typeof mobileNo)
+  const arr = useSelector((state)=>state.people.contact)
+  
+  const obj=arr.find(arrObj => arrObj.contactNumber=== Number(mobileNo))
+  console.log("first77",obj)
+
 
     return (
         <>
@@ -63,7 +73,7 @@ const ChatSectionHeader = (props) => {
                         
 
                         <Avatar sx={{ bgcolor: deepOrange[500], fontSize: "medium" }}>
-                        {selectedPerson.name ? selectedPerson.name[0] : null}
+                        {obj.name ? obj.name[0] : null}
                         </Avatar>
                     </Box>
                     <Box
@@ -71,7 +81,7 @@ const ChatSectionHeader = (props) => {
                         //  marginLeft: "5px"
                          }}
                     >
-                        {selectedPerson.name}
+                        {obj.name}
                     </Box>
                     <Box
                         sx={{ display: "flex",alignItems:"center",justifyContent:"flex-end", height: "100%", width: "20%", gap:3, marginLeft:"20px" }}

@@ -6,6 +6,7 @@ import getCurrentTime from "../CurrentTime";
 
 import { useSelector, useDispatch } from "react-redux";
 import { setSelectedPerson } from "../Slices/peopleSlice";
+import { useParams } from "react-router-dom";
 
 
 
@@ -55,10 +56,14 @@ const Message = (props) => {
 
 
 export default function MessageSection(props) {
-    const people = useSelector((state => state.people.contact))
+    // const people = useSelector((state => state.people.contact))
 
-    let selectedPerson = useSelector((state) => state.people.selectedPerson)
+    // let selectedPerson = useSelector((state) => state.people.selectedPerson)
+    const {mobileNo} = useParams()
 
+  const arr = useSelector((state)=>state.people.contact)
+  const obj=arr.find((arrObj)=>arrObj.contactNumber===Number(mobileNo))
+  console.log("first22",obj)
 
     const style = {
         paperContainer: {
@@ -74,8 +79,8 @@ export default function MessageSection(props) {
 
         let chatArr = [];
        
-        for (let i = 0; i < selectedPerson.messages.length; i++) {
-            chatArr.push(<Message msg={selectedPerson.messages[i]} time={getCurrentTime()}
+        for (let i = 0; i < obj.messages.length; i++) {
+            chatArr.push(<Message msg={obj.messages[i]} time={getCurrentTime()}
             key={i}
             
             />)

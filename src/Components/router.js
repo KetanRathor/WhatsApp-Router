@@ -7,7 +7,7 @@ export const router = createBrowserRouter([
     element:<App/>,
     children:[
         {
-            path:"/:Mno",
+            path:"/:mobileNo",
             element:<ChatSection/>
         }
 

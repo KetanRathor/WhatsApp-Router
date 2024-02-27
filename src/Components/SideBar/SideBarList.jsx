@@ -3,19 +3,22 @@ import { Box, Divider, Avatar, List, ListItem, ListItemAvatar, ListItemText, Typ
 import getCurrentTime from "../CurrentTime";
 import { useSelector, useDispatch } from "react-redux";
 import { setSelectedPerson } from "../Slices/peopleSlice";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Person = (props) => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   let lastMsg = props.person.messages.length;
 
   return (
     <>
-    <Link to={`${props.person.contactNumber}`}>
+    {/* <Link to={`/${props.person.contactNumber}`}> */}
       <ListItem
 
-        onClick={() =>  dispatch(setSelectedPerson(props.person))}
+        onClick={() =>  {dispatch(setSelectedPerson(props.person))
+        navigate(`${props.person.contactNumber}`)
+        }}
 
         sx={{
           overflow: "hidden",
@@ -51,7 +54,7 @@ const Person = (props) => {
 
       
       </ListItem>
-      </Link>
+      {/* </Link> */}
       <Divider
         variant="inset"
         component="li"
