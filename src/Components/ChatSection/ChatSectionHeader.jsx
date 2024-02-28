@@ -6,6 +6,7 @@ import VideocamIcon from '@mui/icons-material/Videocam';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import SearchIcon from '@mui/icons-material/Search';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import ArrowBack from '@mui/icons-material/ArrowBack';
 // import MessageSection from "./MesssageSection";
 
 // import CommunitiesIcon, { VideoCallIcon } from "./Icons/IconsAppBar";
@@ -22,7 +23,7 @@ import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 // import { setSelectedPerson } from "../Slices/selctedPersonSlice";
 
 const ChatSectionHeader = (props) => {
@@ -30,6 +31,7 @@ const ChatSectionHeader = (props) => {
   const selectedPerson = useSelector((state)=>state.people.selectedPerson)
 
   const {mobileNo} = useParams()
+  const navigate = useNavigate();
 
   console.log("param", typeof mobileNo)
   const arr = useSelector((state)=>state.people.contact)
@@ -70,14 +72,18 @@ const ChatSectionHeader = (props) => {
                     <Box
                         sx={{ display: "flex",alignItems:"center", height: "100%", width: "5%", marginLeft:"10px" }}
                     >
+                        <ArrowBack
+                        sx={{fontSize:"15px", display:{xs:obj?'block':'none',sm:'none'}}}
+                  onClick={()=>navigate("/")}
                         
+                  />
 
                         <Avatar sx={{ bgcolor: deepOrange[500], fontSize: "medium" }}>
                         {obj.name ? obj.name[0] : null}
                         </Avatar>
                     </Box>
                     <Box
-                        sx={{ display: "flex",alignItems:"center",justifyContent: "flex-start", height: "100%", width: "70%",marginLeft:"30px"
+                        sx={{ display: "flex",alignItems:"center",justifyContent: "flex-start", height: "100%", width: "70%",marginLeft:"38px",
                         //  marginLeft: "5px"
                          }}
                     >

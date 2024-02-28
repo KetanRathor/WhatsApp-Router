@@ -10,6 +10,7 @@ import { useParams } from 'react-router-dom';
 
 
 
+
 const SideBarHead = () => {
 
   const [profileOpen, setProfileOpen] = useState(false);
@@ -39,6 +40,7 @@ const SideBarHead = () => {
         <IconButton sx={{ p: 0 }}
           onClick={openDrawer}
         >
+          
           <Avatar sx={{ bgcolor: deepOrange[500], fontSize: "medium" }}>
             K
           </Avatar>

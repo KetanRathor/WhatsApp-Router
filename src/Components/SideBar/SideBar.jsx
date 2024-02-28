@@ -25,8 +25,8 @@ const SideBar = (props) => {
         sx={{
           borderRight: "1px solid black",
           // borderTop: "1px solid black",
+          // display: { xs: selectedPerson ? 'none' : 'block', sm: 'none' }
           // display: { xs: selectedPerson ? 'none' : 'block', sm: 'block' }
-          display: { xs: selectedPerson ? 'none' : 'block', sm: 'block' }
           // display:{xs:(props.selectedPerson)?"none":"block",sm:"block"}
         }}
 
